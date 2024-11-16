@@ -1,14 +1,13 @@
+import { Navigate, Route, Routes } from "react-router-dom"
+
+import Contact from './components/Contact'
+import Courses from './courses/Courses'
+import Home from './home/Home.jsx'
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
-import Home from './Home/Home.jsx'
-import { Navigate, Route, Routes } from "react-router-dom"
-import Courses from './courses/Courses'
 import Signup from './components/Signup'
-import Contact from './components/Contact'
 import { Toaster } from 'react-hot-toast';
 import { useAuth } from './components/context/AuthProvider'
-
-
 
 const App = () => {
   const [authUser,setAuthUser]=useAuth();
