@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
-import Home from './Home/Home.jsx'
+import Home from './home/Home.jsx'
 import { Navigate, Route, Routes } from "react-router-dom"
 import Courses from './courses/Courses'
 import Signup from './components/Signup'
