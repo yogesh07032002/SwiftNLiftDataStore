@@ -1,13 +1,12 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
-import { Link, replace, useLocation, useNavigate,  } from "react-router-dom";
+ 
+
+import { Link, replace, useLocation, useNavigate, } from "react-router-dom";
+
 import Login from "./Login";
-import { useForm } from "react-hook-form";
+import React from "react";
 import axios from 'axios'
 import toast from "react-hot-toast";
-
-
-
+import { useForm } from "react-hook-form";
 
 function Signup() {
   const location=useLocation()

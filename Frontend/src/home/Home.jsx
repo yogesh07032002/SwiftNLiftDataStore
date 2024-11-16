@@ -1,16 +1,29 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
-import Navbar from '../components/Navbar'
+import AboutHome from '../components/AboutHome'
 import Banner from '../components/Banner'
-import Freebook from '../components/Freebook'
+import Companies from '../components/Companies'
+import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
+import Freebook from '../components/Freebook'
+import InternshipOpportunities from '../components/Internship'
+import Navbar from '../components/Navbar'
+import React from 'react'
+import ServiceSlider from '../components/Slider'
+import SuccessStories from '../components/SuccessStories'
+import TechStack from '../components/TechStack'
 
 function Home() {
   return (
     <>
     <Navbar/>
     <Banner/>
-    <Freebook/>
+    <AboutHome/>
+    <TechStack/>
+    <ServiceSlider/>
+    {/* <Freebook/> */}
+    <Companies/>
+    <InternshipOpportunities/>
+    <SuccessStories/>
+    <ContactForm/>
     <Footer/>
     
     </>

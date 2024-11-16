@@ -1,10 +1,14 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from 'react'
+ 
+//not useful for home
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import React, { useEffect, useState } from 'react'
+
+import Cards  from './Cards';
 import Slider from "react-slick";
 import axios from 'axios';
-import Cards  from './Cards';
 
 function Freebook  () {
 
