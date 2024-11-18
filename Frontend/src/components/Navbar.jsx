@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
-import Login from '../components/Login';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Login from "../components/Login";
 import Logout from "./Logout";
 import { useAuth } from "./context/AuthProvider";
-import { useState } from "react";
 
 function Navbar() {
   const [authUser, setAuthUser] = useAuth();
-
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -38,7 +43,9 @@ function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [theme]);
+  }, []);
+
+  const [isNotesOpen, setIsNotesOpen] = useState(false); // State to control Notes dropdown
 
   const navItems = (
     <>
@@ -52,105 +59,188 @@ function Navbar() {
         <a href="/contact">Contact</a>
       </li>
       <li>
-        <a>About</a>
+        <a href="/about">About</a>
+      </li>
+      <li>
+        <a href="/why">Why Us</a>
       </li>
     </>
   );
 
+  const toggleNotesDropdown = () => {
+    setIsNotesOpen((prev) => !prev); // Toggle the dropdown visibility
+  };
+
   return (
-    <>
-      <div
-        className={`max-w-screen-2xl container mx-auto md:px-20 px-4 dark:bg-slate-900 dark:text-white fixed top-0 left-0 right-0 z-50 ${
-          sticky
-            ? "sticky-navbar shadow-md bg-base-200 dark:bg-slate-600 dark:text-white duration-300 transition-all ease-in-out"
-            : ""
-        }`}
-      >
-        <div className="navbar">
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
+    <div
+      className={`max-w-screen-2xl container mx-auto md:px-20 px-4 dark:bg-slate-900 dark:text-white fixed top-0 left-0 right-0 z-50 ${
+        sticky
+          ? "sticky-navbar shadow-md bg-base-200 dark:bg-slate-600 dark:text-white duration-300 transition-all ease-in-out"
+          : ""
+      }`}
+    >
+      <div className="navbar">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-              >
-                {navItems}
-              </ul>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
             </div>
-            <a className="text-2xl font-bold cursor-pointer">
-              ArrayLogic Academy
-            </a>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              {navItems}
+            </ul>
           </div>
-          <div className="navbar-end space-x-3">
-            <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1">{navItems}</ul>
-            </div>
+          <a className="hidden sm:block md:text-xl font-bold cursor-pointer">
+            ArrayLogic Academy
+          </a>
+        </div>
 
-            {/* Search bar commented out */}
-            {/* <div className="hidden md:block">
-              <label className="input input-bordered px-3 py-1 rounded-md flex items-center gap-2">
-                <input type="text" className="grow" placeholder="Search" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="h-4 w-4 opacity-70"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </label>
-            </div> */}
+        <div className="navbar-end space-x-3">
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1">{navItems}</ul>
+          </div>
 
-            <label className="swap swap-rotate">
-              <input
-                type="checkbox"
-                className="theme-controller"
-                value="synthwave"
-              />
-            </label>
-
-            {authUser ? (
-              <Logout />
-            ) : (
-              <div className="">
-                <a
-                  className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer"
-                  onClick={() =>
-                    document.getElementById("my_modal_3").showModal()
-                  }
-                >
-                  Login
-                </a>
-                <Login />
-              </div>
+          {/* Notes Dropdown with Click to Open */}
+          <div className="relative">
+            <button
+              onClick={toggleNotesDropdown} // Toggle visibility on click
+              className="text-orange-500 pr-4 md:pr-5 font-bold text-2xl md:text-xl md:px-4 md:py-2 rounded-md duration-300"
+            >
+              Notes
+            </button>
+            {/* Conditionally render the dropdown based on isNotesOpen state */}
+            {isNotesOpen && (
+              <ul className="absolute left-0 mt-2 bg-white text-black shadow-lg w-48 rounded-lg">
+                <li>
+                  <a
+                    href="/notes/java"
+                    className="px-4 py-2 block hover:bg-gray-100"
+                  >
+                    Java
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/notes/python"
+                    className="px-4 py-2 block hover:bg-gray-100"
+                  >
+                    Python
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/notes/mern"
+                    className="px-4 py-2 block hover:bg-gray-100"
+                  >
+                    MERN
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/notes/cloud"
+                    className="px-4 py-2 block hover:bg-gray-100"
+                  >
+                    Cloud Computing
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/notes/datascience"
+                    className="px-4 py-2 block hover:bg-gray-100"
+                  >
+                    Data Science
+                  </a>
+                </li>
+              </ul>
             )}
           </div>
+
+          {/* Social Media Icons */}
+          <div className="flex space-x-4">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faFacebook}
+                className="text-blue-600 hover:text-blue-800 duration-300 text-xl"
+              />
+            </a>
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faTwitter}
+                className="text-blue-400 hover:text-blue-600 duration-300 text-xl"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                className="text-blue-500 hover:text-blue-700 duration-300 text-xl"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faInstagram}
+                className="text-pink-500 hover:text-pink-700 duration-300 text-xl"
+              />
+            </a>
+          </div>
+
+          {/* Dark Mode Toggle */}
+          <label className="swap swap-rotate">
+            <input
+              type="checkbox"
+              className="theme-controller"
+              value="synthwave"
+            />
+          </label>
+
+          {authUser ? (
+            <Logout />
+          ) : (
+            <div className="">
+              <a
+                className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer"
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+              >
+                Login
+              </a>
+              <Login />
+            </div>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

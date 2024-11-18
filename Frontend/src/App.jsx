@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 
+import About from "./About/About.jsx"
 import Contact from './components/Contact'
 import Courses from './courses/Courses'
 import Home from './home/Home.jsx'
@@ -7,6 +8,7 @@ import Home from './home/Home.jsx'
 import React from 'react'
 import Signup from './components/Signup'
 import { Toaster } from 'react-hot-toast';
+import Why from "./Why/why.jsx"
 import { useAuth } from './components/context/AuthProvider'
 
 const App = () => {
@@ -19,8 +21,10 @@ const App = () => {
    <Routes >
       <Route path='/' element={<Home/>}></Route>
       <Route path='/course' element={authUser?<Courses/>:<Navigate to="/signup"/>}/>
+      <Route path='/about' element={<About/>}></Route>
       <Route path='/signup' element={<Signup/>}></Route>
       <Route path='/contact' element={<Contact/>}></Route>
+      <Route path='/why' element={<Why/>}></Route>
 
     </Routes>
     <Toaster/>

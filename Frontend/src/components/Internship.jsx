@@ -78,9 +78,9 @@ const InternshipOpportunities = () => {
           Successful completion of the internship ensures you receive the following certifications:
         </p>
         <ul className="list-disc text-left max-w-lg mx-auto mb-8 text-gray-700">
-          <li className="text-lg">1. Internship Completion Certificate</li>
-          <li className="text-lg">2. Field-Specific Certificate (Java Full Stack, Python Full Stack, MERN Stack)</li>
-          <li className="text-lg">3. Real-World Project Completion Certificate</li>
+          <li className="text-lg ml-6">1. Internship Completion Certificate</li>
+          <li className="text-lg ml-6">2. Field-Specific Certificate (Java Full Stack, Python Full Stack, MERN Stack)</li>
+          <li className="text-lg ml-6">3. Real-World Project Completion Certificate</li>
         </ul>
         <button className="bg-green-600 text-white py-3 px-8 rounded-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105">
           Apply Now for Internships

@@ -4,12 +4,12 @@ const AboutHome = () => {
   return (
     <>
       <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 py-8">
-        <h1 className="text-center font-extrabold text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mt-6 mb-4 animate__animated animate__fadeIn">
+        <h1 className="text-center font-extrabold text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mt-0 mb-4 animate__animated animate__fadeIn">
           About Us
         </h1>
-        <h2 className="text-center text-2xl md:text-3xl font-semibold text-gray-700 mb-6 animate__animated animate__fadeIn animate__delay-1s">
+        {/* <h2 className="text-center text-2xl md:text-3xl font-semibold text-gray-700 mb-6 animate__animated animate__fadeIn animate__delay-1s">
           Welcome to ArrayLogic Academy 👋
-        </h2>
+        </h2> */}
         <p className="text-lg text-gray-700 leading-relaxed tracking-wide space-y-4 animate__animated animate__fadeIn animate__delay-2s">
           Welcome to ArrayLogic Academy, your trusted partner in IT education and career development. We are committed to equipping students with the skills and confidence to excel in today’s competitive environment. At ArrayLogic Academy, we believe in creating opportunities by delivering holistic training that goes beyond technical expertise.
           <br />
@@ -32,6 +32,7 @@ const AboutHome = () => {
           </a>
         </div>
       </div>
+      
     </>
   );
 };

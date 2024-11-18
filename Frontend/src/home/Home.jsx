@@ -5,6 +5,7 @@ import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
 import Freebook from '../components/Freebook'
 import InternshipOpportunities from '../components/Internship'
+import Metrics from '../components/Matrices'
 import Navbar from '../components/Navbar'
 import React from 'react'
 import ServiceSlider from '../components/Slider'
@@ -21,7 +22,9 @@ function Home() {
     <ServiceSlider/>
     {/* <Freebook/> */}
     <Companies/>
+    
     <InternshipOpportunities/>
+ <Metrics/>
     <SuccessStories/>
     <ContactForm/>
     <Footer/>
