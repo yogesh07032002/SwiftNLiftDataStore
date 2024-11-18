@@ -1,4 +1,3 @@
-import Banner from "../../public/Banner.jpg";
 import React from "react";
 
 const ContactForm = () => {
@@ -6,12 +5,12 @@ const ContactForm = () => {
     <div className="bg-gray-100 py-16 px-5">
       <div className="max-w-screen-xl mx-auto flex items-center justify-center">
         {/* Left Section (Image) */}
-        <div className="flex-1 hidden md:block">
+        {/* <div className="flex-1 hidden md:block">
         <img
             src={Banner}
             alt="Image Coomin Soon"
           ></img>
-        </div>
+        </div> */}
 
         {/* Right Section (Form) */}
         <div className="flex-1 bg-white shadow-lg rounded-lg p-8">
